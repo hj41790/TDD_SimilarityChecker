@@ -21,3 +21,11 @@ TEST_F(SimilarityCheckerFixture, AlphabetPoint0) {
 TEST_F(SimilarityCheckerFixture, AlphabetPoint40) {
 	EXPECT_EQ(40, cal.getAlphaPoint("ABC", "CBA"));
 }
+
+TEST_F(SimilarityCheckerFixture, AlphabetPartialPoint1) {
+	EXPECT_EQ(20, cal.getAlphaPoint("AA", "AAE"));
+}
+
+TEST_F(SimilarityCheckerFixture, AlphabetPartialPoint2) {
+	EXPECT_EQ(16, cal.getAlphaPoint("ABCDE", "AAABB"));
+}
