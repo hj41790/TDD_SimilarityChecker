@@ -19,6 +19,17 @@ public:
 		}
 	}
 
+	bool isUsedBothSide(bool usedAlphabet1[26], bool usedAlphabet2[26], int i)
+	{
+		return usedAlphabet1[i] && usedAlphabet2[i];
+	}
+
+	bool isUsedOneSide(bool usedAlphabet1[26], bool usedAlphabet2[26], int i)
+	{
+		return (usedAlphabet1[i] && !usedAlphabet2[i]) ||
+			(!usedAlphabet1[i] && usedAlphabet2[i]);
+	}
+
 	int getAlphaPoint(const string& input1, const string& input2)
 	{
 		invalidArgumentCheckForAlpha(input1, input2);
@@ -33,15 +44,16 @@ public:
 
 		for (int i = 0; i < 26; i++)
 		{
-			if (usedAlphabet1[i] && usedAlphabet2[i]) isAllDifferent = false;
-			if ((usedAlphabet1[i] && !usedAlphabet2[i]) ||
-				(!usedAlphabet1[i] && usedAlphabet2[i]))
-				isAllSame = false;
+			if (isUsedBothSide(usedAlphabet1, usedAlphabet2, i)) isAllDifferent = false;
+			if (isUsedOneSide(usedAlphabet1, usedAlphabet2, i)) isAllSame = false;
 		}
 
 		if (isAllDifferent) return 0;
-		if (isAllSame) return 40;
+		if (isAllSame) return ALPHA_MAX_POINT;
 
 		return 0;
 	}
+
+private:
+	const int ALPHA_MAX_POINT = 40;
 };
