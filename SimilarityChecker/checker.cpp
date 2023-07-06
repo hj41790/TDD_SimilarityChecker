@@ -23,6 +23,24 @@ public:
 	{
 		invalidArgumentCheckForAlpha(input1, input2);
 
+		bool usedAlphabet[26] = { false, };
+		bool isAllDifferent = true;
+
+		for (char c : input1)
+		{
+			usedAlphabet[c - 'A'] = true;
+		}
+
+		for (char c : input2)
+		{
+			if (usedAlphabet[c-'A'])
+			{
+				isAllDifferent = false;
+			}
+		}
+
+		if (isAllDifferent) return 0;
+
 		return 0;
 	}
 };
