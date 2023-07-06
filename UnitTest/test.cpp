@@ -1,6 +1,12 @@
 #include "pch.h"
 #include "../SimilarityChecker/checker.cpp"
 
-TEST(SimilarityCheckerTest, TestName) {
-  EXPECT_EQ(1, 1);
+using namespace std;
+
+TEST(SimilarityCheckerTest, LengthPoint60) {
+	string input1 = "ABC";
+	string input2 = "DEF";
+
+	SimilarityChecker cal;
+	EXPECT_EQ(60, cal.getLengthPoint(input1, input2));
 }
