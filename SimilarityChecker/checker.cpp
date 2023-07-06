@@ -22,24 +22,25 @@ public:
 	int getAlphaPoint(const string& input1, const string& input2)
 	{
 		invalidArgumentCheckForAlpha(input1, input2);
-
-		bool usedAlphabet[26] = { false, };
+		
+		bool usedAlphabet1[26] = { false, };
+		bool usedAlphabet2[26] = { false, };
 		bool isAllDifferent = true;
+		bool isAllSame = true;
 
-		for (char c : input1)
-		{
-			usedAlphabet[c - 'A'] = true;
-		}
+		for (char c : input1) usedAlphabet1[c - 'A'] = true;
+		for (char c : input2) usedAlphabet2[c - 'A'] = true;
 
-		for (char c : input2)
+		for (int i = 0; i < 26; i++)
 		{
-			if (usedAlphabet[c-'A'])
-			{
-				isAllDifferent = false;
-			}
+			if (usedAlphabet1[i] && usedAlphabet2[i]) isAllDifferent = false;
+			if ((usedAlphabet1[i] && !usedAlphabet2[i]) ||
+				(!usedAlphabet1[i] && usedAlphabet2[i]))
+				isAllSame = false;
 		}
 
 		if (isAllDifferent) return 0;
+		if (isAllSame) return 40;
 
 		return 0;
 	}
