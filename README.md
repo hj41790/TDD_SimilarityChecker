@@ -1,0 +1,3 @@
+## Similarity Chcker
+---
+TDD KATA
