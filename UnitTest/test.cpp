@@ -1,6 +1,31 @@
 #include "pch.h"
 #include "../SimilarityChecker/checker.cpp"
 
-TEST(SimilarityCheckerTest, TestName) {
-  EXPECT_EQ(1, 1);
+using namespace std;
+
+class SimilarityCheckerFixture : public testing::Test
+{
+public:
+	SimilarityChecker cal;
+};
+
+TEST_F(SimilarityCheckerFixture, CheckLowercaseLetters) {
+	EXPECT_THROW(cal.getAlphaPoint("AAA", "aaa"), invalid_argument);
+	EXPECT_THROW(cal.getAlphaPoint("aaa", "AAA"), invalid_argument);
+}
+
+TEST_F(SimilarityCheckerFixture, AlphabetPoint0) {
+	EXPECT_EQ(0, cal.getAlphaPoint("ABC", "DEF"));
+}
+
+TEST_F(SimilarityCheckerFixture, AlphabetPoint40) {
+	EXPECT_EQ(40, cal.getAlphaPoint("ABC", "CBA"));
+}
+
+TEST_F(SimilarityCheckerFixture, AlphabetPartialPoint1) {
+	EXPECT_EQ(20, cal.getAlphaPoint("AA", "AAE"));
+}
+
+TEST_F(SimilarityCheckerFixture, AlphabetPartialPoint2) {
+	EXPECT_EQ(16, cal.getAlphaPoint("ABCDE", "AAABB"));
 }
