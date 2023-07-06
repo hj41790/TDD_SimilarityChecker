@@ -10,3 +10,12 @@ TEST(SimilarityCheckerTest, LengthPoint60) {
 	SimilarityChecker cal;
 	EXPECT_EQ(60, cal.getLengthPoint(input1, input2));
 }
+
+TEST(SimilarityCheckerTest, LengthPoint0) {
+	string input1 = "ABC";
+	string input2 = "DEFGHI";
+
+	SimilarityChecker cal;
+	EXPECT_EQ(0, cal.getLengthPoint(input1, input2));
+	EXPECT_EQ(0, cal.getLengthPoint(input2, input1));
+}
