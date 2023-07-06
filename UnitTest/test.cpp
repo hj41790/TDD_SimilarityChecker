@@ -1,6 +1,10 @@
 #include "pch.h"
 #include "../SimilarityChecker/checker.cpp"
 
-TEST(SimilarityCheckerTest, TestName) {
-  EXPECT_EQ(1, 1);
+using namespace std;
+
+TEST(SimilarityCheckerTest, CheckLowercaseLetters) {
+	SimilarityChecker cal;
+	EXPECT_THROW(cal.getAlphaPoint("AAA", "aaa"), invalid_argument);
+	EXPECT_THROW(cal.getAlphaPoint("aaa", "AAA"), invalid_argument);
 }
