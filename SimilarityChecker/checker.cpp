@@ -17,6 +17,18 @@ public:
 
 		if (isDoubleLength(input1, input2)) return 0;
 
-		return 0;
+		int result;
+		if (input1.length() > input2.length())
+		{
+			int gap = input1.length() - input2.length();
+			result = 60 - (60 * gap)/input2.length();
+		}
+		else
+		{
+			int gap = input2.length() - input1.length();
+			result = 60 - (60 * gap) / input1.length();
+		}
+
+		return result;
 	}
 };
