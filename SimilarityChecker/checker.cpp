@@ -1,4 +1,3 @@
-#include <iostream>
 #include <string>
 
 using namespace std;
@@ -31,6 +30,11 @@ public:
 			(!usedAlphabet1[i] && usedAlphabet2[i]);
 	}
 
+	bool isUsedAnySide(bool usedAlphabet1[26], bool usedAlphabet2[26], int i)
+	{
+		return usedAlphabet1[i] || usedAlphabet2[i];
+	}
+
 	int getAlphaPoint(const string& input1, const string& input2)
 	{
 		invalidArgumentCheckForAlpha(input1, input2);
@@ -46,15 +50,15 @@ public:
 
 		for (int i = 0; i < 26; i++)
 		{
-			if (isUsedBothSide(usedAlphabet1, usedAlphabet2, i)) isAllDifferent = false;
+			if (isUsedAnySide(usedAlphabet1, usedAlphabet2, i)) totalCnt++;
+
+			if (isUsedBothSide(usedAlphabet1, usedAlphabet2, i)) {
+				sameCnt++;
+				isAllDifferent = false;
+			}
+
 			if (isUsedOneSide(usedAlphabet1, usedAlphabet2, i)) isAllSame = false;
-
-			if (usedAlphabet1[i] || usedAlphabet2[i]) totalCnt++;
-			if (isUsedBothSide(usedAlphabet1, usedAlphabet2, i)) sameCnt++;
 		}
-
-		cout << totalCnt << endl;
-		cout << sameCnt << endl;
 
 		if (isAllDifferent) return 0;
 		if (isAllSame) return ALPHA_MAX_POINT;
