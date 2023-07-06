@@ -3,35 +3,25 @@
 
 using namespace std;
 
-TEST(SimilarityCheckerTest, LengthPoint60) {
-	string input1 = "ABC";
-	string input2 = "DEF";
-
+class SimilarityCheckerFixture : public testing::Test
+{
+public:
 	SimilarityChecker cal;
-	EXPECT_EQ(60, cal.getLengthPoint(input1, input2));
+};
+
+TEST_F(SimilarityCheckerFixture, LengthPoint60) {
+	EXPECT_EQ(60, cal.getLengthPoint("ABC", "DEF"));
 }
 
-TEST(SimilarityCheckerTest, LengthPoint0) {
-	string input1 = "ABC";
-	string input2 = "DEFGHI";
-
-	SimilarityChecker cal;
-	EXPECT_EQ(0, cal.getLengthPoint(input1, input2));
-	EXPECT_EQ(0, cal.getLengthPoint(input2, input1));
+TEST_F(SimilarityCheckerFixture, LengthPoint0) {
+	EXPECT_EQ(0, cal.getLengthPoint("ABC", "DEFGHI"));
+	EXPECT_EQ(0, cal.getLengthPoint("DEFGHI", "ABC"));
 }
 
-TEST(SimilarityCheckerTest, LengthPointLongShort) {
-	string input1 = "ABCDE";
-	string input2 = "ABC";
-
-	SimilarityChecker cal;
-	EXPECT_EQ(20, cal.getLengthPoint(input1, input2));
+TEST_F(SimilarityCheckerFixture, LengthPointLongShort) {
+	EXPECT_EQ(20, cal.getLengthPoint("ABCDE", "ABC"));
 }
 
-TEST(SimilarityCheckerTest, LengthPointShortLong) {
-	string input1 = "ABC";
-	string input2 = "ABCDE";
-
-	SimilarityChecker cal;
-	EXPECT_EQ(20, cal.getLengthPoint(input1, input2));
+TEST_F(SimilarityCheckerFixture, LengthPointShortLong) {
+	EXPECT_EQ(20, cal.getLengthPoint("ABC", "ABCDE"));
 }
