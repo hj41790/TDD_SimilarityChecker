@@ -3,13 +3,17 @@
 
 using namespace std;
 
-TEST(SimilarityCheckerTest, CheckLowercaseLetters) {
+class SimilarityCheckerFixture : public testing::Test
+{
+public:
 	SimilarityChecker cal;
+};
+
+TEST_F(SimilarityCheckerFixture, CheckLowercaseLetters) {
 	EXPECT_THROW(cal.getAlphaPoint("AAA", "aaa"), invalid_argument);
 	EXPECT_THROW(cal.getAlphaPoint("aaa", "AAA"), invalid_argument);
 }
 
-TEST(SimilarityCheckerTest, AlphabetPoint0) {
-	SimilarityChecker cal;
+TEST_F(SimilarityCheckerFixture, AlphabetPoint0) {
 	EXPECT_EQ(0, cal.getAlphaPoint("ABC", "DEF"));
 }
