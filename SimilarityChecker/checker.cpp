@@ -5,7 +5,7 @@ using namespace std;
 class SimilarityChecker
 {
 public:
-	int getAlphaPoint(const string& input1, const string& input2)
+	void invalidArgumentCheckForAlpha(const string& input1, const string& input2)
 	{
 		for (char c : input1)
 		{
@@ -17,6 +17,11 @@ public:
 			if (c >= 'a' && c <= 'z')
 				throw invalid_argument("Lowercase is included");
 		}
+	}
+
+	int getAlphaPoint(const string& input1, const string& input2)
+	{
+		invalidArgumentCheckForAlpha(input1, input2);
 
 		return 0;
 	}
